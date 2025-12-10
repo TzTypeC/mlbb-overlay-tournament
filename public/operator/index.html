@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Operator Panel</h1>
+
+  <input id="score" placeholder="Score baru" />
+  <button id="updateButton" onclick="update()">Update</button>
+
+  <script>
+    const ws = new WebSocket("ws://localhost:3000/ws");
+
+    ws.onopen = () => {
+      console.log("✓ WebSocket connected!");
+      ws.send(JSON.stringify({ type: "subscribe", matchId: "match123" }));
+    };
+
+    ws.onmessage = (event) => {
+      console.log("📨 Message from server:", event.data);
+      const data = JSON.parse(event.data);
+      if (data.type === "broadcast") {
+        console.log("📡 Broadcast received:", data.payload);
+      }
+    };
+
+    ws.onerror = (error) => {
+      console.error("❌ WebSocket error:", error);
+    };
+
+    ws.onclose = () => {
+      console.warn("⚠️ WebSocket closed");
+    };
+
+    function update() {
+      console.log("Update button clicked");
+      const value = document.getElementById("score").value;
+
+      if (ws.readyState !== WebSocket.OPEN) {
+        console.error("WebSocket not open!");
+        return;
+      }
+
+      ws.send(JSON.stringify({
+        type: "update",
+        matchId: "match123",
+        payload: { score: value }
+      }));
+    }
+  </script>
+</body>
+</html>

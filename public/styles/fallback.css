@@ -1,0 +1,8 @@
+/* Fallback styles to ensure test utilities are visible while Tailwind is verified */
+.bg-red-500 { background-color: #ef4444 !important; }
+.text-white { color: #ffffff !important; }
+.p-4 { padding: 1rem !important; }
+.rounded-lg { border-radius: 0.5rem !important; }
+.bg-black { background-color: #000000 !important; }
+.w-1\/2 { width: 50% !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
