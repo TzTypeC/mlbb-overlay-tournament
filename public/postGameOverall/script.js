@@ -12,3 +12,4 @@ for (let i = 0; i < countBotTitleText; i++) {
     botBlueTeamTitleText.appendChild(span);
     botRedTeamTitleText.appendChild(span.cloneNode(true));
 }
+

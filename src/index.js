@@ -56,6 +56,11 @@ const app = new Elysia()
       }
     }
   })
+  .get('/Hello', 'Hello World')
+  .get('/stream', function* () {
+		yield 'Hello'
+		yield 'World'
+	})
   .listen(3000);
 
 console.log("🔥 Ready at http://localhost:3000");
