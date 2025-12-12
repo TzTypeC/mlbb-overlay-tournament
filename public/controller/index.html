@@ -1,51 +1,182 @@
 <!DOCTYPE html>
-<html>
-<body>
-  <h1>Operator Panel</h1>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostMatch Controller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0c0554 0%, #1a0f7a 50%, #0c0554 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 lg:p-8">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-7xl p-6 lg:p-10">
+        <h1 class="text-3xl lg:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-[#0c0554] to-purple-600 bg-clip-text text-transparent">
+            PostMatch Controller
+        </h1>
+        
+        <form id="matchForm" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Left Column -->
+            <div class="space-y-5">
+                <div>
+                    <label for="namaPertandingan" class="block mb-2 font-semibold text-gray-700">
+                        Nama Pertandingan
+                    </label>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="namaPertandingan" 
+                            required
+                            class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                        <button 
+                            type="button" 
+                            onclick="window.generateUniqueName()"
+                            class="px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 hover:shadow-lg"
+                            title="Generate nama unik"
+                        >
+                            🎲
+                        </button>
+                    </div>
+                </div>
 
-  <input id="score" placeholder="Score baru" />
-  <button id="updateButton" onclick="update()">Update</button>
+                <div>
+                    <label for="jumlahGame" class="block mb-2 font-semibold text-gray-700">
+                        Jumlah Game
+                    </label>
+                    <select 
+                        id="jumlahGame" 
+                        required
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                    >
+                        <option value="">Pilih...</option>
+                        <option value="BO1">BO1</option>
+                        <option value="BO3">BO3</option>
+                        <option value="BO5">BO5</option>
+                    </select>
+                </div>
 
-  <script>
-    const ws = new WebSocket("ws://localhost:3000/ws");
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="matchKe" class="block mb-2 font-semibold text-gray-700">
+                            Match Ke
+                        </label>
+                        <input 
+                            type="number" 
+                            id="matchKe" 
+                            min="1" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                    </div>
 
-    ws.onopen = () => {
-      console.log("✓ WebSocket connected!");
-      ws.send(JSON.stringify({ type: "subscribe", matchId: "match123" }));
-    };
+                    <div>
+                        <label for="gameKe" class="block mb-2 font-semibold text-gray-700">
+                            Game Ke
+                        </label>
+                        <input 
+                            type="number" 
+                            id="gameKe" 
+                            min="1" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                    </div>
+                </div>
 
-    ws.onmessage = (event) => {
-      console.log("📨 Message from server:", event.data);
-      const data = JSON.parse(event.data);
-      if (data.type === "broadcast") {
-        console.log("📡 Broadcast received:", data.payload);
-      }
-    };
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="namaTimA" class="block mb-2 font-semibold text-gray-700">
+                            Nama Tim A
+                        </label>
+                        <input 
+                            type="text" 
+                            id="namaTimA" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                    </div>
+                    <div>
+                        <label for="namaTimB" class="block mb-2 font-semibold text-gray-700">
+                            Nama Tim B
+                        </label>
+                        <input 
+                            type="text" 
+                            id="namaTimB" 
+                            required
+                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                    </div>
+                </div>
 
-    ws.onerror = (error) => {
-      console.error("❌ WebSocket error:", error);
-    };
+                <div>
+                    <label for="tipeMatch" class="block mb-2 font-semibold text-gray-700">
+                        Tipe Match
+                    </label>
+                    <select 
+                        id="tipeMatch" 
+                        required
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                    >
+                        <option value="">Pilih...</option>
+                        <option value="playoff">Playoff</option>
+                        <option value="qualifier">Qualifier</option>
+                    </select>
+                </div>
+            </div>
 
-    ws.onclose = () => {
-      console.warn("⚠️ WebSocket closed");
-    };
+            <!-- Right Column -->
+            <div class="space-y-5">
+                <div class="bg-gray-50 p-5 rounded-xl border-2 border-gray-200">
+                    <label class="block mb-3 font-semibold text-gray-700">
+                        Fetch Data dari URL
+                    </label>
+                    <div class="flex gap-3 mb-4">
+                        <input 
+                            type="text" 
+                            id="fetchUrl" 
+                            placeholder="Masukkan URL..."
+                            class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#0c0554] focus:ring-2 focus:ring-[#0c0554]/20 outline-none transition-all"
+                        >
+                        <button 
+                            type="button" 
+                            onclick="window.fetchData()"
+                            class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105 hover:shadow-lg"
+                        >
+                            Fetch
+                        </button>
+                    </div>
+                    <div 
+                        id="fetchResult" 
+                        class="hidden bg-white p-4 rounded-lg border-l-4 border-[#0c0554] max-h-96 overflow-y-auto"
+                    >
+                        <!-- Result will appear here -->
+                    </div>
+                </div>
 
-    function update() {
-      console.log("Update button clicked");
-      const value = document.getElementById("score").value;
+                <div class="bg-gray-50 p-5 rounded-xl border-2 border-gray-200">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input 
+                            type="checkbox" 
+                            id="pushToPostMatch" 
+                            class="w-5 h-5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-[#0c0554]"
+                        >
+                        <span class="font-semibold text-gray-700">Push to Post Match Visual? 📺</span>
+                    </label>
+                </div>
 
-      if (ws.readyState !== WebSocket.OPEN) {
-        console.error("WebSocket not open!");
-        return;
-      }
+                <button 
+                    type="submit"
+                    class="w-full py-4 bg-gradient-to-r from-[#0c0554] to-purple-600 hover:from-[#1a0f7a] hover:to-purple-700 text-white font-bold text-lg rounded-lg transition-all transform hover:scale-105 hover:shadow-2xl"
+                >
+                    Submit 🚀
+                </button>
+            </div>
+        </form>
+    </div>
 
-      ws.send(JSON.stringify({
-        type: "update",
-        matchId: "match123",
-        payload: { score: value }
-      }));
-    }
-  </script>
-</body>
+  </body>
+  <script src="script.js"></script>
 </html>
-

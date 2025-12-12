@@ -18,35 +18,35 @@ const gameData = {
         wins: 2,  // Jumlah game yang menang
         players: [
             {
-                name: "Player One",
-                hero: "Angela",
-                heropict: "../Assets/HeroPick/angela.png",
-                level: 15,
+                name: "\u003E\"\u003C T@brîž \u003E\"\u003C",
+                hero: "Ruby",
+                heropict: "../Assets/HeroPick/ruby.png",
+                level: 14,
                 kda: { kills: 10, deaths: 2, assists: 8 },
-                gold: 8500,
+                gold: 8290,
                 items: [
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png"
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_93a57157326cbe77eccd9295d13d9abd.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_80a7900e7afd6a7f63384c781b043d33.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_200828350a334470aafa0fb994db6a97.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_a9143e82dd8f9a7509ecff36db789379.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_bc24b55abbbec6da408eb0ea5c37cad4.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_d78fb27df8def66bd1460e851bfbf7a9.png"
                 ]
             },
             {
-                name: "Player Two",
-                hero: "Alice",
-                heropict: "../Assets/HeroPick/alice.png",
+                name: "Rhyaa siap tempur",
+                hero: "Lukas",
+                heropict: "../Assets/HeroPick/lukas.png",
                 level: 14,
                 kda: { kills: 8, deaths: 3, assists: 12 },
-                gold: 7200,
+                gold: 8544,
                 items: [
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "../Assets/Itemandspell/Sky-Piercer.png",
-                    "",
-                    "",
-                    "",
-                    ""
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_1b75a49ef76b0d85c774041463892a29.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b830fbf0e825c3c46010bf5fbf814767.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_bc24b55abbbec6da408eb0ea5c37cad4.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_92/100_93a57157326cbe77eccd9295d13d9abd.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_a9143e82dd8f9a7509ecff36db789379.png",
+                    "https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage/100_b22e32d735916c255243c1bd67d0bd25.png"
                 ]
             },
             {
